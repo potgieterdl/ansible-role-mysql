@@ -3,6 +3,9 @@
   stat: path=/etc/init.d/mysql
   register: mysql_installed
 
+- name: Install apt repository to ondrej for latest mysql5.7
+  apt_repository: repo='ppa:ondrej/mysql-5.7'
+
 - name: Update apt cache if MySQL is not yet installed.
   apt: update_cache=yes
   when: mysql_installed.stat.exists == false
